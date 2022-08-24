@@ -123,7 +123,7 @@ export default function App(args) {
                 <h4 className="mt-3">Tasks list</h4>
                 {tasks.items.map((value, index) => (
                   <Row key={index}>
-                    <Col md={10}>
+                    <Col md={9}>
                       <Input
                         className="my-4"
                         onChange={(event) => handleOnChangeTask(event, index)}
@@ -180,22 +180,24 @@ export default function App(args) {
                         <li>{val}</li>
                       </div>
                     ))}
-                    <Button
-                      outline
-                      color="warning"
-                      onClick={() => update(index1, value1)}
-                      className="btn mt-3"
-                    >
-                      Update{" "}
-                    </Button>
-                    <Button
-                      outline
-                      color="danger"
-                      className="btn ms-2  mt-3"
-                      onClick={() => dispatch(actions.Deleted(index1))}
-                    >
-                      Delete
-                    </Button>
+                    <ButtonGroup>
+                      <Button
+                        outline
+                        color="warning"
+                        onClick={() => update(index1, value1)}
+                        className="btn mt-3"
+                      >
+                        Update{" "}
+                      </Button>
+                      <Button
+                        outline
+                        color="danger"
+                        className="btn ms-2  mt-3"
+                        onClick={() => dispatch(actions.Deleted(index1))}
+                      >
+                        Delete
+                      </Button>
+                    </ButtonGroup>
                   </ul>
                   <div></div>
                 </div>
