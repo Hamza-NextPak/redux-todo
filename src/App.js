@@ -11,7 +11,7 @@ import {
   Card,
   ButtonGroup,
 } from "reactstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "./actions";
 
@@ -20,6 +20,7 @@ export default function App(args) {
   const dispatch = useDispatch();
   const [tasks, settasks] = useState({ title: "", items: [""] });
   const [updateTasks, setUpdateTasks] = useState({
+    id:"",
     title: "",
     items: [""],
   });
@@ -100,6 +101,27 @@ export default function App(args) {
     dispatch(actions.Updated(updateTasks, updateindex));
     console.log("done");
   };
+
+
+
+
+  useEffect(() => {
+    dispatch(actions.getTodo()); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+
+  // useEffect(()=>{  useEffect(() => {
+  //   dispatch(actions.getTodo())
+  // }, [])
+  //   const getTasks = async () =>{
+  //     const data = await getDocs(tasksRef);
+  //       console.log("Document data:", data);
+  //       setTasksData(data.docs.map((doc) => ({...doc.data(),id: doc.id})));
+  //       console.log(tasksData);
+  //   };
+  //   getTasks();
+  // }, [])
   return (
     <>
       <div className="container mt-3">
@@ -193,7 +215,7 @@ export default function App(args) {
                         outline
                         color="danger"
                         className="btn ms-2  mt-3"
-                        onClick={() => dispatch(actions.Deleted(index1))}
+                        onClick={() => dispatch(actions.Deleted(value1.id, index1))}
                       >
                         Delete
                       </Button>

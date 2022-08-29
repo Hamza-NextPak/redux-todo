@@ -13,14 +13,17 @@ let initialState = {
 
 const TODO = (state = initialState, { type, payload }) => {
   switch (type) {
+    case "getTodo":
+      return {
+        ...state,
+        list: payload,
+      };
     case "Submitted":
-
       return {
         ...state,
 
         list: [...state.list, payload],
       };
-
     case "Deleted":
       return {
         ...state,
